@@ -453,9 +453,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Mobile Toggle
-    mobileToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+    // Mobile Toggle & Nav Drawer State Management
+    function toggleMobileMenu(isOpen) {
+        const active = isOpen !== undefined ? isOpen : !navMenu.classList.contains('active');
+        navMenu.classList.toggle('active', active);
+        
+        const toggleIcon = mobileToggle.querySelector('i');
+        if (toggleIcon) {
+            if (active) {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-xmark');
+            } else {
+                toggleIcon.classList.remove('fa-xmark');
+                toggleIcon.classList.add('fa-bars');
+            }
+        }
+    }
+
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+    }
+
+    // Close mobile nav menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+            toggleMobileMenu(false);
+        }
     });
 
     // --- NAVIGATION LINK HIGHLIGHTING & SCROLL SPY ---
@@ -467,9 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function() {
             navLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-            }
+            toggleMobileMenu(false);
         });
     });
 
