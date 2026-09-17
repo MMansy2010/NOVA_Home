@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA Home — UI/UX Design Specification & Guidelines Report</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #060B14;
+            --bg-card: rgba(14, 23, 42, 0.85);
+            --primary-cyan: #00E5FF;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-glass: rgba(0, 229, 255, 0.25);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        /* FORCE COLOR PRESERVATION ON PRINT & FULL PAGE HEIGHT */
+        html {
+            min-height: 100vh;
+            background-color: #060B14 !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            padding: 3rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .report-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(14, 23, 42, 0.85);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 3.5rem;
+            box-shadow: 0 0 50px rgba(0, 229, 255, 0.15);
+        }
+
+        /* HEADER COVER & LOGO POSITIONING */
+        .report-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid var(--border-glass);
+            padding-bottom: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .report-logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            background: rgba(6, 11, 20, 0.7);
+            border: 1px solid var(--border-glass);
+            padding: 0.85rem 1.8rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        .report-logo {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.7));
+        }
+
+        .logo-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-cyan {
+            color: var(--primary-cyan);
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+        }
+
+        .report-badge {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.15);
+            border: 1px solid var(--primary-cyan);
+            color: var(--primary-cyan);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .report-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF 30%, var(--primary-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.6rem;
+        }
+
+        .report-sub {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        /* SECTIONS */
+        .spec-section {
+            margin-bottom: 3.5rem;
+        }
+
+        .spec-section h2 {
+            font-size: 1.6rem;
+            color: var(--primary-cyan);
+            border-left: 4px solid var(--primary-cyan);
+            padding-left: 0.85rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .spec-section h3 {
+            font-size: 1.2rem;
+            color: #FFFFFF;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .spec-section p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.02rem;
+        }
+
+        /* COLOR SWATCHES GRID */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .color-card {
+            background: rgba(6, 11, 20, 0.85);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 1.1rem;
+        }
+
+        .swatch {
+            height: 65px;
+            border-radius: 10px;
+            margin-bottom: 0.85rem;
+        }
+
+        .swatch-navy { background: #060B14; border: 1px solid #1E293B; }
+        .swatch-card { background: #0E172A; border: 1px solid #334155; }
+        .swatch-cyan { background: #00E5FF; }
+        .swatch-green { background: #10B981; }
+        .swatch-red { background: #EF4444; }
+        .swatch-amber { background: #F59E0B; }
+        .swatch-purple { background: #A855F7; }
+
+        .color-name { font-weight: 700; color: #FFFFFF; font-size: 0.95rem; }
+        .color-hex { font-family: var(--font-code); color: var(--text-muted); font-size: 0.85rem; }
+
+        /* TYPOGRAPHY PREVIEW TABLE */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.92rem;
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 0.9rem 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            text-align: left;
+        }
+
+        .spec-table th {
+            background: rgba(0, 229, 255, 0.12);
+            color: var(--primary-cyan);
+            font-weight: 800;
+        }
+
+        .spec-table td { color: var(--text-main); }
+
+        /* COMPONENT GALLERY */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .component-box {
+            background: rgba(6, 11, 20, 0.8);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 1.5rem;
+        }
+
+        .component-box-title {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--primary-cyan);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* PRINT STYLES WITH EXACT COLOR RETENTION */
+        @media print {
+            @page {
+                margin: 1cm;
+                size: portrait;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            body {
+                background-color: #060B14 !important;
+                color: #F8FAFC !important;
+                padding: 0 !important;
+            }
+
+            .report-container {
+                border: 1px solid rgba(0, 229, 255, 0.3) !important;
+                box-shadow: none !important;
+                padding: 2rem !important;
+                background: #0E172A !important;
+                max-width: 100% !important;
+            }
+
+            .report-logo-box {
+                background: #060B14 !important;
+                border: 1px solid rgba(0, 229, 255, 0.4) !important;
+            }
+
+            .report-title {
+                background: linear-gradient(135deg, #FFFFFF 30%, #00E5FF 100%) !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+            }
+
+            .spec-section h2 {
+                color: #00E5FF !important;
+                border-left-color: #00E5FF !important;
+            }
+
+            /* PREVENT ANY SECTION OR CARD FROM SPLITTING ACROSS PAGES */
+            .spec-section,
+            .color-card,
+            .component-box,
+            .spec-table,
+            .report-header,
+            .color-grid,
+            .component-grid {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            .color-card, .component-box {
+                background: #060B14 !important;
+                border: 1px solid rgba(0, 229, 255, 0.3) !important;
+            }
+
+            .spec-table th {
+                background: rgba(0, 229, 255, 0.2) !important;
+                color: #00E5FF !important;
+            }
+
+            .spec-table td {
+                color: #F8FAFC !important;
+            }
+
+            .swatch-navy { background: #060B14 !important; }
+            .swatch-card { background: #0E172A !important; }
+            .swatch-cyan { background: #00E5FF !important; }
+            .swatch-green { background: #10B981 !important; }
+            .swatch-red { background: #EF4444 !important; }
+            .swatch-amber { background: #F59E0B !important; }
+            .swatch-purple { background: #A855F7 !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <br><br>
+        <!-- COVER / HEADER -->
+        <header class="report-header">
+            <div class="report-logo-box">
+                <img src="./NOVA Home Logo.png" alt="NOVA Home Logo" class="report-logo">
+                <span class="logo-title">NOVA <span class="logo-cyan">HOME</span></span>
+            </div>
+
+            <div class="report-badge">DECI COMPETITION LEVEL 3 — UI/UX SPECIFICATION</div>
+            <h1 class="report-title">NOVA Home UI/UX Design System & Architecture</h1>
+            <p class="report-sub">Comprehensive UX Guidelines, Color Tokens, Typography Scale, Component Specs, and Wireframe Layouts</p>
+        </header>
+
+        <!-- SECTION 1: UX VISION -->
+        <section class="spec-section">
+            <h2>1. Executive Summary & UX Vision</h2>
+            <p>
+                NOVA Home is designed as an ultra-modern, high-impact intelligent smart home engineering platform. The UI/UX vision centers on <strong>Instant Cognitive Clarity</strong>, <strong>High-Tech Dark Aesthetics</strong>, and <strong>Explainable AI Interaction</strong>.
+            </p>
+            <p>
+                Evaluators and homeowners can view critical telemetry (Temperature, Humidity, Ambient Light, Motion) and perimeter security status within 3 seconds of opening the interface, with instantaneous low-latency control over IoT actuators.
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </p>
+        </section>
+
+        <!-- SECTION 2: COLOR PALETTE -->
+        <section class="spec-section">
+            <h2>2. Color Palette & Design Tokens</h2>
+            <p>A curated dark navy background theme with electric cyan glowing accents, glassmorphic container overlays, and clear functional semantic colors.</p>
+            
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="swatch swatch-navy"></div>
+                    <div class="color-name">Deep Navy BG</div>
+                    <div class="color-hex">#060B14</div>
+                </div>
+                <div class="color-card">
+                    <div class="swatch swatch-card"></div>
+                    <div class="color-name">Glass Card Surface</div>
+                    <div class="color-hex">#0E172A (85%)</div>
+                </div>
+                <div class="color-card">
+                    <div class="swatch swatch-cyan"></div>
+                    <div class="color-name">Electric Cyan Accent</div>
+                    <div class="color-hex">#00E5FF</div>
+                </div>
+                <div class="color-card">
+                    <div class="swatch swatch-green"></div>
+                    <div class="color-name">Secure / Optimal</div>
+                    <div class="color-hex">#10B981 / #34D399</div>
+                </div>
+                <div class="color-card">
+                    <div class="swatch swatch-red"></div>
+                    <div class="color-name">Perimeter Alert</div>
+                    <div class="color-hex">#EF4444 / #F87171</div>
+                </div>
+                <div class="color-card">
+                    <div class="swatch swatch-amber"></div>
+                    <div class="color-name">AI Action Warning</div>
+                    <div class="color-hex">#F59E0B / #FBBF24</div>
+                </div>
+                <div class="color-card">
+                    <div class="swatch swatch-purple"></div>
+                    <div class="color-name">Autonomous AI</div>
+                    <div class="color-hex">#A855F7 / #C084FC</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: TYPOGRAPHY -->
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <section class="spec-section">
+            <h2>3. Typography System</h2>
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Role / Target</th>
+                        <th>Font Family</th>
+                        <th>Size / Weight</th>
+                        <th>Usage Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Brand / Titles</td>
+                        <td>Plus Jakarta Sans</td>
+                        <td>2.5rem (40px) / 800 Bold</td>
+                        <td>Main Section Headers & Logo Brand Name</td>
+                    </tr>
+                    <tr>
+                        <td>Subtitles & Titles</td>
+                        <td>Plus Jakarta Sans</td>
+                        <td>1.2rem (19px) / 700 SemiBold</td>
+                        <td>Card Titles & Section Descriptions</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor Values</td>
+                        <td>Fira Code</td>
+                        <td>2.2rem (35px) / 800 Bold</td>
+                        <td>Real-Time Sensor Values (28.5°C, 54%)</td>
+                    </tr>
+                    <tr>
+                        <td>Body Text</td>
+                        <td>Inter</td>
+                        <td>0.95rem (15px) / 400 Regular</td>
+                        <td>General Paragraphs & AI Condition Explanations</td>
+                    </tr>
+                    <tr>
+                        <td>Pin Map & Terminal</td>
+                        <td>Fira Code</td>
+                        <td>0.85rem (13px) / 700 Bold</td>
+                        <td>GPIO Pin Badges & Live MQTT Terminal Logs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 4: COMPONENT ARCHITECTURE -->
+        <section class="spec-section">
+            <h2>4. UI Component Architecture</h2>
+            <div class="component-grid">
+                <div class="component-box">
+                    <div class="component-box-title"><i class="fa-solid fa-shield-halved"></i> Security Panel Component</div>
+                    <p>Dynamic banner monitoring physical perimeter states. Toggles between <strong>SYSTEM SECURE</strong> (Emerald Green) and <strong>PERIMETER ALERT</strong> (Pulsing Red) when doors/windows are opened.</p>
+                </div>
+                <div class="component-box">
+                    <div class="component-box-title"><i class="fa-solid fa-gauge-high"></i> Sensor Telemetry Card</div>
+                    <p>Includes FontAwesome category icon, sensor badge (e.g. DHT22), numeric value in Fira Code font, horizontal progress gauge, and thermal/moisture status message.</p>
+                </div>
+                <div style="grid-column: 1 / -1;"><br><br><br><br></div>
+                <div class="component-box">
+                    <div class="component-box-title"><i class="fa-solid fa-sliders"></i> Actuator Control Item</div>
+                    <p>Integrates custom rounded toggle switches, PWM brightness/speed sliders, state labels, and active visual glowing feedback upon activation.</p>
+                </div>
+                <div class="component-box">
+                    <div class="component-box-title"><i class="fa-solid fa-brain"></i> Explainable AI Module</div>
+                    <p>Provides transparent AI reasoning via <code>Explain Condition</code>, <code>Suggested Action</code>, rule tags, and a 1-click <code>Apply AI Action</code> button.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ACCESSIBILITY & LAYOUT -->
+        <section class="spec-section">
+            <h2>5. Accessibility & Information Architecture</h2>
+            <p>
+                <strong>Navigation Structure:</strong> Sticky top header bar with active scroll-spy detection highlighting current viewports (Dashboard, Architecture, Hardware Flow, AI Pipeline, GPIO Map).
+            </p>
+            <p>
+                <strong>Accessibility Compliance:</strong> Exceeds WCAG 2.1 AA standard for color contrast ratio (> 7:1 for main text). High-contrast icons accompany color badges to ensure color-blind accessibility.
+            </p>
+        </section>
+    </div>
+</body>
+</html>
