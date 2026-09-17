@@ -1,0 +1,10 @@
+| Component    | New GPIO |
+| ------------ | -------: |
+| Sensors      | GPIO 4–8 |
+| OLED SCL     |   GPIO 9 |
+| OLED SDA     |  GPIO 10 |
+| Door Servo   |  GPIO 11 |
+| Window Servo |  GPIO 12 |
+| Fan MOSFET   |  GPIO 13 |
+| LED MOSFET   |  GPIO 14 |
+| Buzzer       |  GPIO 15 |

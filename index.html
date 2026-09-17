@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA Home — Smart Home Engineering & AI System</title>
+    <meta name="description" content="NOVA Home is an intelligent AI & IoT smart home engineering system featuring ESP32 control, real-time sensor analytics, cybersecurity, and predictive automation.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- BACKGROUND GLOW EFFECTS -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- MAIN HEADER -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <div class="brand-group">
+                <img src="./NOVA Home Logo.png" alt="NOVA Home Logo" class="brand-logo">
+                <div class="brand-titles">
+                    <span class="brand-name">NOVA <span class="brand-cyan">HOME</span></span>
+                    <span class="brand-sub">DECI LEVEL 3 ENGINEERING</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="#dashboard" class="nav-link active"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                <a href="#architecture" class="nav-link"><i class="fa-solid fa-diagram-project"></i> Architecture</a>
+                <a href="#hardware" class="nav-link"><i class="fa-solid fa-microchip"></i> Hardware Flow</a>
+                <a href="#ai-pipeline" class="nav-link"><i class="fa-solid fa-brain"></i> AI Pipeline</a>
+                <a href="#pinmap" class="nav-link"><i class="fa-solid fa-plug"></i> GPIO Map</a>
+            </nav>
+
+            <div class="header-status-group">
+                <div class="status-badge status-online" id="statusBadge">
+                    <span class="pulse-dot"></span>
+                    <span class="status-text">ONLINE</span>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <!-- HERO SUBMISSION BANNER -->
+        <section class="hero-banner">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fa-solid fa-award"></i> DECI COMPETITION LEVEL 3 SUBMISSION</div>
+                <h1 class="hero-title">Intelligent AI & IoT Smart Home Ecosystem</h1>
+                <p class="hero-desc">
+                    Engineered with ESP32 microcontrollers, synchronized two-way Wi-Fi telemetry, real-time sensor analytics, robust cybersecurity, and autonomous predictive AI recommendations.
+                </p>
+                <div class="hero-actions">
+                    <a href="#dashboard" class="btn btn-primary"><i class="fa-solid fa-sliders"></i> Open Web Dashboard</a>
+                    <a href="#architecture" class="btn btn-outline"><i class="fa-solid fa-network-wired"></i> View System Architecture</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="statPing">12 ms</div>
+                    <div class="stat-label">Wi-Fi Latency</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">ESP32</div>
+                    <div class="stat-label">Core MCU</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">99.8%</div>
+                    <div class="stat-label">AI Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statUptime">04:18:22</div>
+                    <div class="stat-label">System Uptime</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: MEDIA #7 WEB DASHBOARD -->
+        <section class="section-container" id="dashboard">
+            <div class="section-header">
+                <div class="section-tag"><i class="fa-solid fa-desktop"></i> MEDIA #7 — WEB DASHBOARD</div>
+                <h2 class="section-title">Real-Time Control & Telemetry Panel</h2>
+                <p class="section-subtitle">Live environmental sensor monitoring, device actuators, automated AI recommendations, and active security status.</p>
+            </div>
+
+            <!-- SECURITY PANEL -->
+            <div class="dashboard-grid security-row">
+                <div class="card glass-card security-banner" id="securityBannerCard">
+                    <div class="security-banner-header">
+                        <div class="security-title-group">
+                            <i class="fa-solid fa-shield-halved security-icon" id="mainSecurityIcon"></i>
+                            <div>
+                                <h3 class="card-title">System Security Status</h3>
+                                <p class="card-subtitle">Encrypted two-way ESP32 communication & physical perimeter monitoring</p>
+                            </div>
+                        </div>
+                        <div class="security-pill secure" id="overallSecurityPill">
+                            <i class="fa-solid fa-lock"></i> <span id="overallSecurityText">SYSTEM SECURE</span>
+                        </div>
+                    </div>
+                    <div class="security-status-grid">
+                        <div class="security-item">
+                            <div class="security-item-info">
+                                <span class="security-item-label"><i class="fa-solid fa-door-closed"></i> Door Perimeter</span>
+                                <span class="security-item-val" id="secDoorStatus">Locked & Secure</span>
+                            </div>
+                            <div class="security-bar-bg"><div class="security-bar-fill fill-green" id="secDoorBar" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-item-info">
+                                <span class="security-item-label"><i class="fa-solid fa-window-maximize"></i> Window Perimeter</span>
+                                <span class="security-item-val" id="secWindowStatus">Closed & Secure</span>
+                            </div>
+                            <div class="security-bar-bg"><div class="security-bar-fill fill-green" id="secWindowBar" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-item-info">
+                                <span class="security-item-label"><i class="fa-solid fa-lock"></i> Cybersecurity Protocol</span>
+                                <span class="security-item-val">AES-128 Auth Active</span>
+                            </div>
+                            <div class="security-bar-bg"><div class="security-bar-fill fill-cyan" style="width: 100%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SENSOR READINGS CARDS (4 CARDS) -->
+            <div class="dashboard-grid sensors-grid">
+                <!-- 1. TEMPERATURE CARD -->
+                <div class="card glass-card sensor-card" id="cardTemp">
+                    <div class="card-header">
+                        <div class="icon-box icon-red"><i class="fa-solid fa-temperature-high"></i></div>
+                        <span class="sensor-badge">DHT22</span>
+                    </div>
+                    <div class="sensor-body">
+                        <span class="sensor-label">Temperature</span>
+                        <div class="sensor-value-group">
+                            <span class="sensor-val" id="valTemp">28.5</span><span class="sensor-unit">°C</span>
+                        </div>
+                        <div class="gauge-bar"><div class="gauge-fill fill-temp" id="gaugeTemp" style="width: 57%;"></div></div>
+                    </div>
+                    <div class="sensor-footer">
+                        <span id="tempStatus"><i class="fa-solid fa-circle-check text-green"></i> Optimal Thermal Comfort</span>
+                    </div>
+                </div>
+
+                <!-- 2. HUMIDITY CARD -->
+                <div class="card glass-card sensor-card" id="cardHumidity">
+                    <div class="card-header">
+                        <div class="icon-box icon-blue"><i class="fa-solid fa-droplet"></i></div>
+                        <span class="sensor-badge">DHT22</span>
+                    </div>
+                    <div class="sensor-body">
+                        <span class="sensor-label">Humidity</span>
+                        <div class="sensor-value-group">
+                            <span class="sensor-val" id="valHumidity">54</span><span class="sensor-unit">%</span>
+                        </div>
+                        <div class="gauge-bar"><div class="gauge-fill fill-humidity" id="gaugeHumidity" style="width: 54%;"></div></div>
+                    </div>
+                    <div class="sensor-footer">
+                        <span id="humidityStatus"><i class="fa-solid fa-circle-check text-cyan"></i> Normal Moisture Level</span>
+                    </div>
+                </div>
+
+                <!-- 3. LIGHT CARD -->
+                <div class="card glass-card sensor-card" id="cardLight">
+                    <div class="card-header">
+                        <div class="icon-box icon-amber"><i class="fa-solid fa-sun"></i></div>
+                        <span class="sensor-badge">LDR Sensor</span>
+                    </div>
+                    <div class="sensor-body">
+                        <span class="sensor-label">Ambient Light</span>
+                        <div class="sensor-value-group">
+                            <span class="sensor-val" id="valLight">680</span><span class="sensor-unit"> Lux</span>
+                        </div>
+                        <div class="gauge-bar"><div class="gauge-fill fill-light" id="gaugeLight" style="width: 68%;"></div></div>
+                    </div>
+                    <div class="sensor-footer">
+                        <span id="lightStatus"><i class="fa-solid fa-sun text-amber"></i> Daylight Conditions</span>
+                    </div>
+                </div>
+
+                <!-- 4. MOTION CARD -->
+                <div class="card glass-card sensor-card" id="cardMotion">
+                    <div class="card-header">
+                        <div class="icon-box icon-purple"><i class="fa-solid fa-person-walking"></i></div>
+                        <span class="sensor-badge">PIR Motion</span>
+                    </div>
+                    <div class="sensor-body">
+                        <span class="sensor-label">Motion Detection</span>
+                        <div class="sensor-value-group">
+                            <span class="sensor-val-str text-green" id="valMotion">DETECTED</span>
+                        </div>
+                        <div class="gauge-bar"><div class="gauge-fill fill-motion" id="gaugeMotion" style="width: 100%;"></div></div>
+                    </div>
+                    <div class="sensor-footer">
+                        <span id="motionStatus"><i class="fa-solid fa-user-check text-green"></i> Room Occupied</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEVICE CONTROL + AI RECOMMENDATIONS GRID -->
+            <div class="dashboard-grid controls-ai-grid">
+                <!-- DEVICE CONTROL CARD -->
+                <div class="card glass-card devices-card">
+                    <div class="card-header border-bottom">
+                        <div class="card-title-box">
+                            <i class="fa-solid fa-toggle-on text-cyan"></i>
+                            <h3 class="card-title">Device Control (Actuators)</h3>
+                        </div>
+                        <span class="live-pill"><i class="fa-solid fa-wifi"></i> ESP32 Connected</span>
+                    </div>
+                    
+                    <div class="devices-list">
+                        <!-- LIGHT CONTROL -->
+                        <div class="device-item" id="deviceLightItem">
+                            <div class="device-info">
+                                <div class="device-icon-box" id="lightIconBox"><i class="fa-solid fa-lightbulb"></i></div>
+                                <div>
+                                    <h4 class="device-name">Lighting System (LED MOSFET)</h4>
+                                    <p class="device-sub" id="lightStateText">State: OFF (0%)</p>
+                                </div>
+                            </div>
+                            <div class="device-actions">
+                                <input type="range" min="0" max="100" value="0" class="brightness-slider" id="sliderLight">
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleLight">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- FAN CONTROL -->
+                        <div class="device-item" id="deviceFanItem">
+                            <div class="device-info">
+                                <div class="device-icon-box" id="fanIconBox"><i class="fa-solid fa-fan"></i></div>
+                                <div>
+                                    <h4 class="device-name">Climate Fan (DC Motor MOSFET)</h4>
+                                    <p class="device-sub" id="fanStateText">State: OFF (0 RPM)</p>
+                                </div>
+                            </div>
+                            <div class="device-actions">
+                                <input type="range" min="0" max="100" value="0" class="brightness-slider" id="sliderFan">
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleFan">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- DOOR SERVO -->
+                        <div class="device-item" id="deviceDoorItem">
+                            <div class="device-info">
+                                <div class="device-icon-box" id="doorIconBox"><i class="fa-solid fa-door-closed"></i></div>
+                                <div>
+                                    <h4 class="device-name">Main Door (Servo Motor)</h4>
+                                    <p class="device-sub" id="doorStateText">State: LOCKED (0° Position)</p>
+                                </div>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn btn-sm btn-outline" id="btnToggleDoor"><i class="fa-solid fa-key"></i> Lock/Unlock</button>
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleDoor">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- WINDOW SERVO -->
+                        <div class="device-item" id="deviceWindowItem">
+                            <div class="device-info">
+                                <div class="device-icon-box" id="windowIconBox"><i class="fa-solid fa-window-maximize"></i></div>
+                                <div>
+                                    <h4 class="device-name">Window Ventilation (Servo Motor)</h4>
+                                    <p class="device-sub" id="windowStateText">State: CLOSED (0° Position)</p>
+                                </div>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn btn-sm btn-outline" id="btnToggleWindow"><i class="fa-solid fa-arrows-left-right"></i> Open/Close</button>
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleWindow">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI RECOMMENDATION & EXPLANATION CARD -->
+                <div class="card glass-card ai-recommendation-card">
+                    <div class="card-header border-bottom">
+                        <div class="card-title-box">
+                            <i class="fa-solid fa-brain text-purple"></i>
+                            <h3 class="card-title">AI Recommendation Engine</h3>
+                        </div>
+                        <span class="ai-mode-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> Autonomous AI</span>
+                    </div>
+
+                    <div class="ai-card-body">
+                        <!-- CONDITION EXPLAINER BOX -->
+                        <div class="ai-box condition-box">
+                            <div class="ai-box-title"><i class="fa-solid fa-circle-info text-cyan"></i> Current Environment Condition</div>
+                            <p class="ai-box-desc" id="aiConditionExplain">
+                                Room is occupied (Motion Detected), ambient temperature is high (31°C), and window is closed.
+                            </p>
+                            <div class="ai-tags" id="aiConditionTags">
+                                <span class="ai-tag tag-warm">High Temp 31°C</span>
+                                <span class="ai-tag tag-motion">Occupied</span>
+                                <span class="ai-tag tag-window">Window Closed</span>
+                            </div>
+                        </div>
+
+                        <!-- SUGGESTED ACTION BOX -->
+                        <div class="ai-box action-box">
+                            <div class="ai-box-title"><i class="fa-solid fa-bolt text-amber"></i> Suggested Intelligent Action</div>
+                            <p class="ai-action-text" id="aiSuggestedActionText">
+                                Turn climate fan ON at 85% speed & display thermal notification on OLED display.
+                            </p>
+                            <div class="ai-action-footer">
+                                <button class="btn btn-cyan btn-block" id="btnApplyAiAction">
+                                    <i class="fa-solid fa-play"></i> Apply AI Action Automatically
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- LIVE TELEMETRY LOG STREAM -->
+                        <div class="telemetry-log-box">
+                            <div class="log-header">
+                                <span><i class="fa-solid fa-terminal"></i> ESP32 MQTT Live Log</span>
+                                <span class="log-clear" id="btnClearLogs">Clear Log</span>
+                            </div>
+                            <div class="log-content" id="logContent">
+                                <div class="log-line log-info">[18:54:02] ESP32: Wi-Fi Connected (RSSI: -42dBm)</div>
+                                <div class="log-line log-success">[18:54:05] SENSORS: Temp=28.5°C, Hum=54%, LDR=680lx</div>
+                                <div class="log-line log-ai">[18:54:10] AI MODEL: Model inference completed -> Confidence 98.4%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 01: SYSTEM ARCHITECTURE -->
+        <section class="section-container" id="architecture">
+            <div class="section-header">
+                <div class="section-tag"><i class="fa-solid fa-sitemap"></i> 01 SYSTEM ARCHITECTURE</div>
+                <h2 class="section-title">End-to-End System Topology</h2>
+                <p class="section-subtitle">Bridging physical home components with ESP32 controllers, encrypted Wi-Fi pipelines, and web AI analytics.</p>
+            </div>
+
+            <div class="card glass-card image-preview-card">
+                <div class="diagram-wrapper">
+                    <img src="./System Archetecture.png" alt="NOVA Home System Architecture Diagram" class="diagram-img">
+                </div>
+                <div class="architecture-grid">
+                    <div class="arch-node">
+                        <div class="arch-step">01</div>
+                        <h4>Physical Home</h4>
+                        <p>Sensors • Door • Window • Voice</p>
+                    </div>
+                    <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="arch-node">
+                        <div class="arch-step">02</div>
+                        <h4>ESP32 Controller</h4>
+                        <p>Read • Process • Control</p>
+                    </div>
+                    <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="arch-node">
+                        <div class="arch-step">03</div>
+                        <h4>Wi-Fi / IoT</h4>
+                        <p>Two-way encrypted communication</p>
+                    </div>
+                    <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="arch-node">
+                        <div class="arch-step">04</div>
+                        <h4>Digital System</h4>
+                        <p>Dashboard • Data • AI • Security</p>
+                    </div>
+                    <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="arch-node">
+                        <div class="arch-step">05</div>
+                        <h4>Actuators</h4>
+                        <p>Lights • Fan • Servos • OLED</p>
+                    </div>
+                </div>
+                <div class="security-banner-footer">
+                    <i class="fa-solid fa-shield-halved text-cyan"></i> CYBERSECURITY PROTECTS COMMUNICATION + CONTROL PROTOCOLS
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 02: HARDWARE + IOT FLOW -->
+        <section class="section-container" id="hardware">
+            <div class="section-header">
+                <div class="section-tag"><i class="fa-solid fa-microchip"></i> 02 HARDWARE + IOT FLOW</div>
+                <h2 class="section-title">Inputs, Controller & Outputs Architecture</h2>
+                <p class="section-subtitle">ESP32 communicates with the web dashboard through Wi-Fi and maintains synchronized device states.</p>
+            </div>
+
+            <div class="card glass-card image-preview-card margin-bottom-lg">
+                <div class="diagram-wrapper">
+                    <img src="./IoT & Hardware Flow.png" alt="NOVA Home IoT & Hardware Flow Diagram" class="diagram-img">
+                </div>
+            </div>
+
+            <div class="hardware-columns">
+                <!-- INPUTS COLUMN -->
+                <div class="card glass-card hw-column">
+                    <div class="hw-header hw-input">
+                        <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
+                        <h3>INPUTS / SENSORS</h3>
+                    </div>
+                    <ul class="hw-list">
+                        <li><i class="fa-solid fa-temperature-half text-cyan"></i> DHT11 / DHT22 (Temperature & Humidity)</li>
+                        <li><i class="fa-solid fa-person-walking text-cyan"></i> PIR Sensor (Motion Detection)</li>
+                        <li><i class="fa-solid fa-sun text-cyan"></i> LDR (Ambient Light Sensor)</li>
+                        <li><i class="fa-solid fa-door-closed text-cyan"></i> Door & Window Switches</li>
+                        <li><i class="fa-solid fa-microphone text-cyan"></i> Microphone (Voice Commands)</li>
+                    </ul>
+                </div>
+
+                <!-- CONTROLLER COLUMN -->
+                <div class="card glass-card hw-column">
+                    <div class="hw-header hw-controller">
+                        <i class="fa-solid fa-cpu"></i>
+                        <h3>CONTROLLER</h3>
+                    </div>
+                    <ul class="hw-list">
+                        <li><i class="fa-solid fa-microchip text-blue"></i> ESP32 Microcontroller Core</li>
+                        <li><i class="fa-solid fa-gears text-blue"></i> Real-time Sensor Processing</li>
+                        <li><i class="fa-solid fa-shield-check text-blue"></i> Two-Way Command Validation</li>
+                        <li><i class="fa-solid fa-wifi text-blue"></i> Wi-Fi Telemetry Synchronization</li>
+                    </ul>
+                </div>
+
+                <!-- OUTPUTS COLUMN -->
+                <div class="card glass-card hw-column">
+                    <div class="hw-header hw-output">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <h3>OUTPUTS / ACTUATORS</h3>
+                    </div>
+                    <ul class="hw-list">
+                        <li><i class="fa-solid fa-lightbulb text-amber"></i> LED Strip (PWM MOSFET Control)</li>
+                        <li><i class="fa-solid fa-fan text-amber"></i> Fan + DC Motor (MOSFET Driver)</li>
+                        <li><i class="fa-solid fa-gear text-amber"></i> Door Servo Motor (GPIO 11)</li>
+                        <li><i class="fa-solid fa-window-maximize text-amber"></i> Window Servo Motor (GPIO 12)</li>
+                        <li><i class="fa-solid fa-volume-high text-amber"></i> Buzzer (GPIO 15)</li>
+                        <li><i class="fa-solid fa-tv text-amber"></i> OLED Display (I2C OLED)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 05: AI & DATA FLOW -->
+        <section class="section-container" id="ai-pipeline">
+            <div class="section-header">
+                <div class="section-tag"><i class="fa-solid fa-brain"></i> AI & DATA FLOW</div>
+                <h2 class="section-title">From Sensor Data to Intelligent Action</h2>
+                <p class="section-subtitle">How NOVA Home collects, prepares, analyzes, and turns home data into intelligent recommendations and predictions.</p>
+            </div>
+
+            <div class="card glass-card image-preview-card margin-bottom-lg">
+                <div class="diagram-wrapper">
+                    <img src="./NOVA Home — Media 5 AI Data Flow.png" alt="NOVA Home AI & Data Flow Pipeline" class="diagram-img">
+                </div>
+            </div>
+
+            <!-- AI PIPELINE STEPS GRID -->
+            <div class="ai-steps-grid">
+                <div class="step-card glass-card">
+                    <span class="step-num">01</span>
+                    <h4>Sensor Data</h4>
+                    <p>Temperature • Humidity • Light • Motion • Door • Window</p>
+                </div>
+                <div class="step-card glass-card">
+                    <span class="step-num">02</span>
+                    <h4>Data Collection</h4>
+                    <p>ESP32 reads sensor values in real-time over GPIO/I2C.</p>
+                </div>
+                <div class="step-card glass-card">
+                    <span class="step-num">03</span>
+                    <h4>Data Storage</h4>
+                    <p>Timestamped readings stored for time-series analysis.</p>
+                </div>
+                <div class="step-card glass-card">
+                    <span class="step-num">04</span>
+                    <h4>Data Cleaning</h4>
+                    <p>Remove errors, missing values, and noise spikes.</p>
+                </div>
+                <div class="step-card glass-card">
+                    <span class="step-num">05</span>
+                    <h4>Feature Engineering</h4>
+                    <p>Create useful inputs from raw readings and trends.</p>
+                </div>
+                <div class="step-card glass-card">
+                    <span class="step-num">06</span>
+                    <h4>AI Model</h4>
+                    <p>Learn patterns from historical data & generate actions.</p>
+                </div>
+            </div>
+
+            <!-- MODEL VARIABLES & EXAMPLE -->
+            <div class="card glass-card ai-example-card">
+                <h3><i class="fa-solid fa-sliders text-cyan"></i> AI Model Variables & Rule Logic</h3>
+                <div class="variables-pill-group">
+                    <span class="var-pill">Temperature</span>
+                    <span class="var-pill">Humidity</span>
+                    <span class="var-pill">Light</span>
+                    <span class="var-pill">Motion</span>
+                    <span class="var-pill">Door</span>
+                    <span class="var-pill">Window</span>
+                    <span class="var-pill">Time</span>
+                    <span class="var-pill">Fan State</span>
+                    <span class="var-pill">Light State</span>
+                    <span class="var-pill">User Commands</span>
+                </div>
+                <div class="example-box">
+                    <div class="example-title"><i class="fa-solid fa-lightbulb text-amber"></i> REAL INFERENCE EXAMPLE:</div>
+                    <div class="example-code">
+                        <code>31°C + 57% Humidity + Motion Detected + Window Closed ➔ AI detects a hot occupied room ➔ Fan recommendation triggered</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: GPIO PIN MAP & SCHEMATIC -->
+        <section class="section-container" id="pinmap">
+            <div class="section-header">
+                <div class="section-tag"><i class="fa-solid fa-plug"></i> HARDWARE PINOUT MAP</div>
+                <h2 class="section-title">ESP32 Pin Map & Circuit Diagram</h2>
+                <p class="section-subtitle">Exact GPIO allocation for sensors, OLED display, servos, MOSFET drivers, and buzzer.</p>
+            </div>
+
+            <div class="pinmap-grid">
+                <!-- TABLE CARD -->
+                <div class="card glass-card table-card">
+                    <h3 class="card-title margin-bottom-md"><i class="fa-solid fa-table text-cyan"></i> ESP32 GPIO Allocation Table</h3>
+                    <div class="table-responsive">
+                        <table class="pin-table">
+                            <thead>
+                                <tr>
+                                    <th>Hardware Component</th>
+                                    <th>Interface Type</th>
+                                    <th>Assigned GPIO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="fa-solid fa-wave-square text-cyan"></i> Sensors (DHT22 / PIR / LDR)</td>
+                                    <td>Digital / Analog In</td>
+                                    <td><span class="code-badge">GPIO 4 – 8</span></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa-solid fa-tv text-cyan"></i> OLED SCL</td>
+                                    <td>I2C Clock</td>
+                                    <td><span class="code-badge">GPIO 9</span></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa-solid fa-tv text-cyan"></i> OLED SDA</td>
+                                    <td>I2C Data</td>
+                                    <td><span class="code-badge">GPIO 10</span></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa-solid fa-door-closed text-cyan"></i> Door Servo Motor</td>
+                                    <td>PWM Signal</td>
+                                    <td><span class="code-badge">GPIO 11</span></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa-solid fa-window-maximize text-cyan"></i> Window Servo Motor</td>
+                                    <td>PWM Signal</td>
+                                    <td><span class="code-badge">GPIO 12</span></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa-solid fa-fan text-cyan"></i> Fan MOSFET Driver</td>
+                                    <td>High Power PWM</td>
+                                    <td><span class="code-badge">GPIO 13</span></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa-solid fa-lightbulb text-cyan"></i> LED MOSFET Driver</td>
+                                    <td>PWM Dimmer</td>
+                                    <td><span class="code-badge">GPIO 14</span></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa-solid fa-bell text-cyan"></i> Alarm Buzzer</td>
+                                    <td>Tone Generator</td>
+                                    <td><span class="code-badge">GPIO 15</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- CIRCUIT SCHEMATIC PREVIEW CARD -->
+                <div class="card glass-card circuit-card">
+                    <h3 class="card-title margin-bottom-md"><i class="fa-solid fa-microchip text-amber"></i> Hardware Circuit Wiring</h3>
+                    <div class="circuit-img-wrapper" id="circuitTrigger">
+                        <img src="./Circuit.png" alt="NOVA Home Hardware Circuit Diagram" class="circuit-thumb">
+                        <div class="circuit-overlay">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i> Click to Enlarge Circuit Diagram
+                        </div>
+                    </div>
+                    <p class="circuit-desc">
+                        Full schematics showcasing ESP32 pin breakout connections, pull-up resistors, power delivery (5V/12V MOSFET channels), and signal routing.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- LIGHTBOX MODAL FOR CIRCUIT IMAGE -->
+    <div class="modal-overlay" id="circuitModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">NOVA Home Circuit Schematic</h3>
+            <img src="./Circuit.png" alt="Enlarged Circuit Schematic" class="modal-img">
+        </div>
+    </div>
+
+    <!-- MAIN FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="./NOVA Home Logo.png" alt="NOVA Home Logo" class="footer-logo">
+                <div>
+                    <span class="footer-title">NOVA HOME</span>
+                    <p class="footer-sub">Smart Home Engineering & AI Ecosystem • DECI Level 3</p>
+                </div>
+            </div>
+            <div class="footer-info">
+                <span><i class="fa-solid fa-shield"></i> ESP32 IoT & AI Platform</span>
+                <span>•</span>
+                <span>DECI Competition Level 3</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS SCRIPTS -->
+    <script src="app.js"></script>
+</body>
+</html>
